@@ -50,7 +50,7 @@ public final class Settings implements SharedPreferences.OnSharedPreferenceChang
     public static final String SCREEN_DEBUG = "screen_debug";
     // In the same order as xml/prefs.xml
     public static final String PREF_AUTO_CAP = "auto_cap";
-    public static final String PREF_VIBRATE_ON = "vibrate_on";
+    public static final String PREF_VIBRATE_ON = "haptic_feedback_enabled";
     public static final String PREF_SOUND_ON = "sound_on";
     public static final String PREF_POPUP_ON = "popup_on";
     // PREF_VOICE_MODE_OBSOLETE is obsolete. Use PREF_VOICE_INPUT_KEY instead.
