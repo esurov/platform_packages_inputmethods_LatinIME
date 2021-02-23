@@ -41,7 +41,7 @@ public final class KeyboardTheme implements Comparable<KeyboardTheme> {
     public static final int THEME_ID_KLP = 2;
     public static final int THEME_ID_LXX_LIGHT = 3;
     public static final int THEME_ID_LXX_DARK = 4;
-    public static final int DEFAULT_THEME_ID = THEME_ID_KLP;
+    public static final int DEFAULT_THEME_ID = THEME_ID_LXX_DARK;
 
     private static KeyboardTheme[] AVAILABLE_KEYBOARD_THEMES;
 
@@ -116,29 +116,29 @@ public final class KeyboardTheme implements Comparable<KeyboardTheme> {
             final int sdkVersion, final KeyboardTheme[] availableThemeArray) {
         final String klpThemeIdString = prefs.getString(KLP_KEYBOARD_THEME_KEY, null);
         if (klpThemeIdString != null) {
-            if (sdkVersion <= VERSION_CODES.KITKAT) {
-                try {
-                    final int themeId = Integer.parseInt(klpThemeIdString);
-                    final KeyboardTheme theme = searchKeyboardThemeById(themeId,
-                            availableThemeArray);
-                    if (theme != null) {
-                        return theme;
-                    }
-                    Log.w(TAG, "Unknown keyboard theme in KLP preference: " + klpThemeIdString);
-                } catch (final NumberFormatException e) {
-                    Log.w(TAG, "Illegal keyboard theme in KLP preference: " + klpThemeIdString, e);
-                }
-            }
+//            if (sdkVersion <= VERSION_CODES.KITKAT) {
+//                try {
+//                    final int themeId = Integer.parseInt(klpThemeIdString);
+//                    final KeyboardTheme theme = searchKeyboardThemeById(themeId,
+//                            availableThemeArray);
+//                    if (theme != null) {
+//                        return theme;
+//                    }
+//                    Log.w(TAG, "Unknown keyboard theme in KLP preference: " + klpThemeIdString);
+//                } catch (final NumberFormatException e) {
+//                    Log.w(TAG, "Illegal keyboard theme in KLP preference: " + klpThemeIdString, e);
+//                }
+//            }
             // Remove old preference.
             Log.i(TAG, "Remove KLP keyboard theme preference: " + klpThemeIdString);
             prefs.edit().remove(KLP_KEYBOARD_THEME_KEY).apply();
         }
-        // TODO: This search algorithm isn't optimal if there are many themes.
-        for (final KeyboardTheme theme : availableThemeArray) {
-            if (sdkVersion >= theme.mMinApiVersion) {
-                return theme;
-            }
-        }
+//        // TODO: This search algorithm isn't optimal if there are many themes.
+//        for (final KeyboardTheme theme : availableThemeArray) {
+//            if (sdkVersion >= theme.mMinApiVersion) {
+//                return theme;
+//            }
+//        }
         return searchKeyboardThemeById(DEFAULT_THEME_ID, availableThemeArray);
     }
 
